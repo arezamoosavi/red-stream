@@ -1,0 +1,27 @@
+# Main
+# ------------------------------------------------------------------------------
+jupyter
+python-dateutil
+minio==6.0.0
+SQLAlchemy==1.2.8
+mysqlclient==1.3.4
+
+# Data-ML
+# ------------------------------------------------------------------------------
+numpy
+pandas
+scikit_learn
+
+# Celery
+# ------------------------------------------------------------------------------
+kombu
+kombu-sqlalchemy
+simple-settings
+celery==4.4.2
+celery[redis]
+celery[eventlet]
+amqp
+redis
+eventlet
+dnspython
+requests

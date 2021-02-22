@@ -1,0 +1,56 @@
+version: "3.2"
+
+services:
+  app: &base_app
+    build:
+      context: .
+      dockerfile: ./container/Dockerfile
+    env_file:
+      - ./container/.env_vars
+    volumes:
+      - ./src:/main
+    depends_on:
+      - redis
+    restart: unless-stopped
+    command: sh /run.sh
+    # command: sleep infinity
+  flower:
+    container_name: flower
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=amqp://admin:mypass@rabbitmq:5672
+      - FLOWER_PORT=8888
+    depends_on:
+      - redis
+      - app
+    ports:
+      - "8888:8888"
+  redis:
+    image: redis
+    container_name: "redis"
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+      - "33060"
+    # volumes:
+    #   - ./storage/mysql-data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "maindb"
+      MYSQL_USER: "mainuser"
+      MYSQL_PASSWORD: "mainpass"
+    restart: unless-stopped
+  superset:
+    image: arezamoosavi/superset:latest
+    container_name: superset
+    ports:
+      - 8088:8088
+    restart: unless-stopped
