@@ -1,25 +1,25 @@
 # Main
 # ------------------------------------------------------------------------------
-jupyter
-python-dateutil
+jupyterlab==3.0.8
+python-dateutil==2.8.1
 minio==6.0.0
 SQLAlchemy==1.2.8
 mysqlclient==1.3.4
 
 # Data-ML
 # ------------------------------------------------------------------------------
-numpy
-pandas
-scikit_learn
+numpy==1.20.1
+pandas==1.2.2
+scikit-learn==0.24.1
 
 # Celery
 # ------------------------------------------------------------------------------
-kombu
-kombu-sqlalchemy
-simple-settings
+kombu==4.6.9
+kombu-sqlalchemy==1.1.0
+simple-settings==1.0.0
 celery==4.4.2
-celery[redis]
-celery[eventlet]
+celery[redis]==4.4.2
+celery[eventlet]==4.4.2
 amqp
 redis
 eventlet

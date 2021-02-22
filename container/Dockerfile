@@ -17,9 +17,6 @@ RUN pip install --no-cache-dir jupyter
 RUN mkdir -p /main
 COPY ./src /main
 
-COPY ./container/run_web.sh /run_web.sh
-RUN chmod 777 /run_web.sh
-
 COPY ./container/run_celery.sh /run_celery.sh
 RUN chmod 777 /run_celery.sh
 

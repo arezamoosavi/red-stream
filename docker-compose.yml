@@ -1,7 +1,7 @@
 version: "3.2"
 
 services:
-  app: &base_app
+  worker: &base_app
     build:
       context: .
       dockerfile: ./container/Dockerfile
@@ -12,17 +12,16 @@ services:
     depends_on:
       - redis
     restart: unless-stopped
-    command: sh /run.sh
+    command: sh /run_celery.sh
     # command: sleep infinity
   flower:
     container_name: flower
     image: mher/flower
     environment:
-      - CELERY_BROKER_URL=amqp://admin:mypass@rabbitmq:5672
+      - CELERY_BROKER_URL=redis://redis:6379/1
       - FLOWER_PORT=8888
     depends_on:
       - redis
-      - app
     ports:
       - "8888:8888"
   redis:
