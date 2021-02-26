@@ -1,16 +1,16 @@
 version: "3.2"
 
 services:
-  worker: &base_app
+  app: &base_app
     build:
       context: .
       dockerfile: ./container/Dockerfile
     env_file:
       - ./container/.env_vars
+    ports:
+      - "8000:8000"
     volumes:
       - ./src:/main
-    depends_on:
-      - redis
     restart: unless-stopped
     command: sh /run_celery.sh
     # command: sleep infinity

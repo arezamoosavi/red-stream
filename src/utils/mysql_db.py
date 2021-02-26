@@ -26,31 +26,20 @@ engine = create_engine(
     )
 )
 
+
 metadata = MetaData()
 
-dataset = Table(
-    "dataset",
+bitcoin_model = Table(
+    "bitcoin_model",
     metadata,
-    Column("id", BigInteger, primary_key=True),
+    Column("id", Integer, primary_key=True),
     Column("created_at", DateTime(timezone=True), server_default=func.now()),
-    Column("dataset_id", Text, nullable=True, default=""),
-    Column("hash_id", Text, nullable=True, default=""),
-)
-
-model_training = Table(
-    "model_training",
-    metadata,
-    Column("id", BigInteger, primary_key=True),
-    Column("model_id", Text, nullable=True, default=""),
-    Column("dataset_id", Text, nullable=True, default=""),
-    Column("model_type", Text, nullable=True, default=""),
-    Column("class_column", Text, nullable=True, default=""),
-    Column("feature_column", Text, nullable=True, default=""),
-    Column("test_ratio", Float, nullable=True, default=""),
-    Column("result", Text, nullable=True, default=""),
-    Column("duration", Float, nullable=True, default=""),
-    Column("started", DateTime(timezone=True), nullable=False, server_default=func.now()),
-    Column("finished", DateTime(timezone=True), onupdate=func.current_timestamp()),
+    Column("open", Float, nullable=True, default=""),
+    Column("high", Float, nullable=True, default=""),
+    Column("low", Float, nullable=True, default=""),
+    Column("real_close", Float, nullable=True, default=""),
+    Column("1step_close", Float, nullable=True, default=""),
+    Column("10step_close", Float, nullable=True, default=""),
 )
 
 metadata.create_all(engine)
