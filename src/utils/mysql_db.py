@@ -37,7 +37,7 @@ bitcoin_model = Table(
     Column("open", Float, nullable=True, default=""),
     Column("high", Float, nullable=True, default=""),
     Column("low", Float, nullable=True, default=""),
-    Column("real_close", Float, nullable=True, default=""),
+    Column("close", Float, nullable=True, default=""),
     Column("1step_close", Float, nullable=True, default=""),
     Column("10step_close", Float, nullable=True, default=""),
 )
