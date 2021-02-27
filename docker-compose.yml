@@ -50,6 +50,9 @@ services:
   superset:
     image: arezamoosavi/superset:latest
     container_name: superset
+    entrypoint:
+      ADMIN_USERNAME: admin
+      ADMIN_PWD: admin
     ports:
       - 8088:8088
     restart: unless-stopped
