@@ -25,6 +25,11 @@ Then add mysql as database then the table as datastore!
 ```bash
 http://0.0.0.0:8888
 ```
+#### metabase real-time dashboard:
+```bash
+http://0.0.0.0:3000
+```
+
 ## Result
 
 ![alt text](https://github.com/arezamoosavi/red-stream/blob/main/photo/img1.png?raw=true)
