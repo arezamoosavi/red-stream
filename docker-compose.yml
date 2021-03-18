@@ -31,6 +31,7 @@ services:
       - "6379:6379"
     restart: unless-stopped
     command: redis-server --appendonly yes
+    
   mysql:
     image: mysql:8.0
     ports:
@@ -47,6 +48,7 @@ services:
       MYSQL_USER: "mainuser"
       MYSQL_PASSWORD: "mainpass"
     restart: unless-stopped
+
   superset:
     image: arezamoosavi/superset:latest
     container_name: superset
@@ -56,6 +58,7 @@ services:
     ports:
       - 8088:8088
     restart: unless-stopped
+
   metabase:
     container_name: metabase
     image: metabase/metabase
@@ -69,3 +72,12 @@ services:
     ports:
       - 3000:3000
     restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:7.1.4
+    restart: unless-stopped
+    container_name: grafana
+    env_file:
+      - ./container/.grafana_envs
+    ports:
+      - "3000:3000"
